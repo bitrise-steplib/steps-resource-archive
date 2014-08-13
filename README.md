@@ -10,10 +10,13 @@ Downloads and extracts a .ZIP archive to a specified path.
 -- example: if the zip contains a root folder "ziproot/" and the EXTRACT_TO_PATH is ""
 
 
-# Input
-- RESOURCE_ARCHIVE_URL
-- EXTRACT_TO_PATH
+# Input Enviroment Variables
+- **RESOURCE_ARCHIVE_URL**
 
+	the URL of the .ZIP archive
+- **EXTRACT_TO_PATH**
+
+	the target path of the .ZIP archive download
 
 # TODO
 - other archive formats (right now only .zip is supported)
