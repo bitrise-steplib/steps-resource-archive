@@ -26,10 +26,14 @@ if [ -z "$EXTRACT_TO_PATH" ]; then
   exit 1
 fi;
 
+# this expansion is required for paths with ~
+#  more information: http://stackoverflow.com/questions/3963716/how-to-manually-expand-a-special-variable-ex-tilde-in-bash
+eval expanded_target_path="$EXTRACT_TO_PATH"
+
 echo "------------------------------------------------"
 echo " Inputs:"
 echo "  RESOURCE_ARCHIVE_URL: $RESOURCE_ARCHIVE_URL"
-echo "  EXTRACT_TO_PATH: $EXTRACT_TO_PATH"
+echo "  EXTRACT_TO_PATH: $expanded_target_path"
 echo "------------------------------------------------"
 
 # --- Preparations
@@ -61,13 +65,13 @@ else
 fi;
 
 # --- Prepare the target path
-if [ ! -d "$EXTRACT_TO_PATH" ]; then
-  echo " (i) EXTRACT_TO_PATH directory doesn't exist - creating it..."
-  mkdir -p "$EXTRACT_TO_PATH"
+if [ ! -d "$expanded_target_path" ]; then
+  echo " (i) expanded_target_path directory doesn't exist - creating it..."
+  mkdir -p "$expanded_target_path"
   prepare_result=$?
   if [ $prepare_result -eq 0 ]; then
     echo " (i) Directory created"
-    write_section_to_formatted_output "- Create directory: ${EXTRACT_TO_PATH}"
+    write_section_to_formatted_output "- Create directory: ${expanded_target_path}"
   else
     echo " [!] Could not create directory! (error code: $prepare_result)"
     write_section_to_formatted_output "- Create directory: failed"
@@ -76,14 +80,14 @@ if [ ! -d "$EXTRACT_TO_PATH" ]; then
 fi;
 
 # --- Copy to the required location
-cp -r unarchived/ "$EXTRACT_TO_PATH"
+cp -r unarchived/ "$expanded_target_path"
 copy_result=$?
 if [ $copy_result -eq 0 ]; then
   echo " (i) Copy OK"
-  write_section_to_formatted_output "- Copy to directory: Successful"
+  write_section_to_formatted_output "- Copy to directory: successful"
 else
   echo " [!] Copy failed! (error code: $copy_result)"
-  write_section_to_formatted_output "- Copy to directory: Failed"
+  write_section_to_formatted_output "- Copy to directory: failed"
   exit $copy_result
 fi;
 
