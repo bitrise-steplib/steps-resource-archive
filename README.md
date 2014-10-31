@@ -3,6 +3,8 @@ steps-resource-archive
 
 Downloads and extracts a .ZIP archive to a specified path.
 
+This Step is part of the [Open StepLib](http://www.steplib.com/), you can find its StepLib page [here](http://www.steplib.com/step/resource-archive-downloader)
+
 # Info
 - The archive have to be a .zip
 - the uncompressed content of the archive will be moved to the location specified by EXTRACT_TO_PATH
@@ -10,10 +12,13 @@ Downloads and extracts a .ZIP archive to a specified path.
 -- example: if the zip contains a root folder "ziproot/" and the EXTRACT_TO_PATH is ""
 
 
-# Input
-- RESOURCE_ARCHIVE_URL
-- EXTRACT_TO_PATH
+# Input Enviroment Variables
+- **RESOURCE_ARCHIVE_URL**
 
+	the URL of the .ZIP archive
+- **EXTRACT_TO_PATH**
+
+	the target path of the .ZIP archive download
 
 # TODO
 - other archive formats (right now only .zip is supported)
