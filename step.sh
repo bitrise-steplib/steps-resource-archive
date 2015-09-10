@@ -1,26 +1,26 @@
 #!/bin/bash
 
-if [ -z "$RESOURCE_ARCHIVE_URL" ]; then
-  echo " [!] RESOURCE_ARCHIVE_URL is not provided - required!"
+if [ -z "$archive_url" ]; then
+  echo " [!] archive_url is not provided - required!"
   exit 1
 fi;
 
-if [ -z "$EXTRACT_TO_PATH" ]; then
-  echo " [!] EXTRACT_TO_PATH is not provided - required!"
+if [ -z "$extract_to_path" ]; then
+  echo " [!] extract_to_path is not provided - required!"
   exit 1
 fi;
 
 echo "------------------------------------------------"
 echo " Inputs:"
-echo "  RESOURCE_ARCHIVE_URL: $RESOURCE_ARCHIVE_URL"
-echo "  EXTRACT_TO_PATH: $EXTRACT_TO_PATH"
+echo "  archive_url: $archive_url"
+echo "  extract_to_path: $extract_to_path"
 echo "------------------------------------------------"
 
 # --- Preparations
 mkdir "downloads"
 
 # --- Download
-curl -fo "downloads/resource" "$RESOURCE_ARCHIVE_URL"
+curl -fo "downloads/resource" "$archive_url"
 curl_result=$?
 if [ $curl_result -eq 0 ]; then
   echo " (i) Download OK (not an error response)"
@@ -40,9 +40,9 @@ else
 fi;
 
 # --- Prepare the target path
-if [ ! -d "$EXTRACT_TO_PATH" ]; then
-  echo " (i) EXTRACT_TO_PATH directory doesn't exist - creating it..."
-  mkdir -p "$EXTRACT_TO_PATH"
+if [ ! -d "$extract_to_path" ]; then
+  echo " (i) extract_to_path directory doesn't exist - creating it..."
+  mkdir -p "$extract_to_path"
   prepare_result=$?
   if [ $prepare_result -eq 0 ]; then
     echo " (i) Directory created"
@@ -53,7 +53,7 @@ if [ ! -d "$EXTRACT_TO_PATH" ]; then
 fi;
 
 # --- Copy to the required location
-cp -r unarchived/ "$EXTRACT_TO_PATH"
+cp -r unarchived/ "$extract_to_path"
 copy_result=$?
 if [ $copy_result -eq 0 ]; then
   echo " (i) Copy OK"

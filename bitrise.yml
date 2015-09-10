@@ -1,0 +1,13 @@
+format_version: 1.0.0
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+
+app:
+  envs:
+  # define these in your .bitrise.secrets.yml
+  - archive_url:
+  - extract_to_path:
+
+workflows:
+  test:
+    steps:
+    - path::./:
