@@ -1,0 +1,35 @@
+title: Resource Archive
+summary: Resource Archive
+description: |-
+  Downloads and extracts a .ZIP archive to a specified path.
+website: https://github.com/bitrise-io/steps-resource-archive
+source_code_url: https://github.com/bitrise-io/steps-resource-archive
+support_url: https://github.com/bitrise-io/steps-resource-archive/issues
+host_os_tags:
+  - "osx-10.10"
+project_type_tags: []
+type_tags: []
+is_requires_admin_user: false
+is_always_run: false
+is_skippable: false
+dependencies: []
+inputs:
+  - archive_url: ""
+    opts:
+      title: "Resource path"
+      summary: ""
+      description: |-
+        Path of the resource .ZIP file.
+      is_required: true
+      is_expand: true
+      is_dont_change_value: false
+  - extract_to_path: ""
+    opts:
+      title: "Extract path"
+      summary: ""
+      description: |-
+        Resource extract path.
+      is_required: true
+      is_expand: true
+      is_dont_change_value: false
+outputs: []
