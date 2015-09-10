@@ -1,13 +1,10 @@
 format_version: 1.0.0
 default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 
-app:
-  envs:
-  # define these in your .bitrise.secrets.yml
-  - archive_url:
-  - extract_to_path:
-
 workflows:
   test:
     steps:
     - path::./:
+        inputs:
+            - archive_url: https://bitrise-steplib-collection.s3.amazonaws.com/step-archives/activate-ssh-key/3.0.2/step.zip
+            - extract_to_path: ./_temp

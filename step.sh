@@ -20,7 +20,7 @@ echo "------------------------------------------------"
 mkdir "downloads"
 
 # --- Download
-curl -fo "downloads/resource" "$archive_url"
+curl -fo "downloads/resource.zip" "$archive_url"
 curl_result=$?
 if [ $curl_result -eq 0 ]; then
   echo " (i) Download OK (not an error response)"
