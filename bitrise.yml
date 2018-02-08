@@ -1,4 +1,4 @@
-format_version: "2"
+format_version: "4"
 default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 
 app:
@@ -8,6 +8,8 @@ app:
 
 workflows:
   test:
+    before_run:
+    - audit-this-step
     steps:
     - path::./:
         inputs:
