@@ -5,6 +5,8 @@ app:
   envs:
   - STEP_VERSION: 2.0.1
   - ORIG_BITRISE_SOURCE_DIR: $BITRISE_SOURCE_DIR
+  - ARCHIVE_URL: https://bitrise-steplib-collection.s3.amazonaws.com/step-archives/activate-ssh-key/3.0.2/step.zip
+  - EXTRACT_URL: ./_tmp
 
 workflows:
   test:
@@ -13,8 +15,43 @@ workflows:
     steps:
     - path::./:
         inputs:
-        - archive_url: https://bitrise-steplib-collection.s3.amazonaws.com/step-archives/activate-ssh-key/3.0.2/step.zip
-        - extract_to_path: ./_tmp
+        - archive_url: $ARCHIVE_URL
+        - extract_to_path: $EXTRACT_URL
+    - script:
+        title: Output check
+        inputs:
+        - content: |-
+            #!/bin/bash
+
+            ARCHIVED_FILE_PATH=downloads/resource.zip
+            ARCHIVE_FILE_PATH=$EXTRACT_URL/
+            UNARCHIVED_FILE_PATH=unarchived/
+
+            if [ -f "$ARCHIVED_FILE_PATH" ]; then
+                echo "$ARCHIVED_FILE_PATH exists."
+            else 
+                echo "$ARCHIVED_FILE_PATH does not exist."
+
+                exit 1
+            fi
+
+            EXTRACTED_FILE_COUNT=$(ls -la $ARCHIVE_FILE_PATH | wc -l | xargs)
+            if [ $EXTRACTED_FILE_COUNT -eq 12 ]; then
+              echo "Extracted file count match with the expected count in dir.: $ARCHIVE_FILE_PATH"
+            else
+              echo "-> FAILED: expected: 12 got: $EXTRACTED_FILE_COUNT"
+              exit 1
+            fi
+
+            UNARCHIVED_FILE_COUNT=$(ls -la $UNARCHIVED_FILE_PATH | wc -l | xargs)
+            if [ $UNARCHIVED_FILE_COUNT -eq 12 ]; then
+              echo "Extracted file count match with the expected count in dir.: $UNARCHIVED_FILE_PATH"
+            else
+              echo "-> FAILED: expected: 12 got: $UNARCHIVED_FILE_COUNT"
+              exit 1
+            fi
+
+            exit 0
 
   # ----------------------------------------------------------------
   # --- workflows to create Release
