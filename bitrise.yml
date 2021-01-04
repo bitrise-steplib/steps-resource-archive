@@ -24,7 +24,7 @@ workflows:
             #!/bin/bash
 
             ARCHIVED_FILE_PATH=downloads/resource.zip
-            ARCHIVE_FILE_PATH=$EXTRACT_URL/
+            ARCHIVE_FILE_PATH=$EXTRACT_URL/unarchived/
             UNARCHIVED_FILE_PATH=unarchived/
 
             if [ -f "$ARCHIVED_FILE_PATH" ]; then
@@ -39,7 +39,7 @@ workflows:
             if [ $EXTRACTED_FILE_COUNT -eq 12 ]; then
               echo "Extracted file count match with the expected count in dir.: $ARCHIVE_FILE_PATH"
             else
-              echo "-> FAILED: expected: 12 got: $EXTRACTED_FILE_COUNT"
+              echo "-> FAILED: location: $ARCHIVE_FILE_PATH, expected: 12 got: $EXTRACTED_FILE_COUNT"
               exit 1
             fi
 
@@ -47,7 +47,7 @@ workflows:
             if [ $UNARCHIVED_FILE_COUNT -eq 12 ]; then
               echo "Extracted file count match with the expected count in dir.: $UNARCHIVED_FILE_PATH"
             else
-              echo "-> FAILED: expected: 12 got: $UNARCHIVED_FILE_COUNT"
+              echo "-> FAILED: location: $UNARCHIVED_FILE_PATH expected: 12 got: $UNARCHIVED_FILE_COUNT"
               exit 1
             fi
 
