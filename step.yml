@@ -1,7 +1,7 @@
 title: ZIP resource archive downloader
 summary: ZIP resource archive downloader
 description: |-
-  Downloads and extracts a .ZIP archive to a specified path.
+  Downloads and extracts a .ZIP archive to a specified path. Please note that the step creates an `unarchived` folder at the specified location. You will find the contents of the .ZIP archive in the `unarchived` folder.
 website: https://github.com/bitrise-io/steps-resource-archive
 source_code_url: https://github.com/bitrise-io/steps-resource-archive
 support_url: https://github.com/bitrise-io/steps-resource-archive/issues
