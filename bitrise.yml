@@ -24,7 +24,7 @@ workflows:
             #!/bin/bash
 
             ARCHIVED_FILE_PATH=downloads/resource.zip
-            ARCHIVE_FILE_PATH=$EXTRACT_URL/unarchived/
+            ARCHIVE_FILE_PATH=$EXTRACT_URL/
             UNARCHIVED_FILE_PATH=unarchived/
 
             if [ -f "$ARCHIVED_FILE_PATH" ]; then
