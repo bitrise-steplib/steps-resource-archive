@@ -53,7 +53,7 @@ if [ ! -d "$extract_to_path" ]; then
 fi;
 
 # --- Copy to the required location
-cp -r unarchived/ "$extract_to_path"
+cp -r unarchived/* "$extract_to_path"
 copy_result=$?
 if [ $copy_result -eq 0 ]; then
   echo " (i) Copy OK"
