@@ -5,7 +5,7 @@ app:
   envs:
   - STEP_VERSION: 2.0.1
   - ORIG_BITRISE_SOURCE_DIR: $BITRISE_SOURCE_DIR
-  - ARCHIVE_URL: https://bitrise-steplib-collection.s3.amazonaws.com/step-archives/activate-ssh-key/3.0.2/step.zip
+  - ARCHIVE_URL: https://steplib.bitrise.io/step-archives/activate-ssh-key/3.0.2/step.zip
   - EXTRACT_URL: ./_tmp
 
 workflows:
